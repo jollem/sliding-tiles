@@ -1,5 +1,10 @@
 <script lang="ts">
-	import { size } from '../stores';
+	import { tiles } from '../stores';
+	import { sorted } from '../lib';
+
+	$: {
+		sorted($tiles) && alert('Yahoo!');
+	}
 </script>
 
-<b>Board size: {$size}</b>
+<pre>{JSON.stringify($tiles, undefined, 4)}</pre>
