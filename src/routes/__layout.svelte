@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Header from './header.svelte';
+	import Board from './board.svelte';
 </script>
 
 <svelte:head>
@@ -7,4 +8,4 @@
 </svelte:head>
 
 <Header />
-<slot />
+<Board />
