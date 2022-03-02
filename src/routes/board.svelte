@@ -42,7 +42,7 @@
 		background-color: black;
 		border-radius: 5px;
 		color: white;
-		font-size: clamp(2rem, 5vw, 4rem);
+		font-size: clamp(2rem, 5vh, 4rem);
 		font-weight: bold;
 		display: flex;
 		justify-content: center;
