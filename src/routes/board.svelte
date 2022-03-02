@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { tiles, legal, move } from '../stores';
+	import { size, tiles, legal, move } from '../stores';
 	import { sorted } from '../lib';
 
 	$: {
@@ -8,7 +8,7 @@
 </script>
 
 <div>
-	<div>
+	<div style="--size: {$size}">
 		{#each $tiles as tile}
 			<div
 				class:hole={!tile}
@@ -28,22 +28,21 @@
 		align-content: center;
 	}
 	div div {
-		--size: 4;
 		height: 75vh;
 		width: 75vh;
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		grid-template-rows: repeat(4, 1fr);
-		column-gap: 0.2em;
-		row-gap: 0.2em;
+		grid-template-columns: repeat(var(--size), 1fr);
+		grid-template-rows: repeat(var(--size), 1fr);
+		column-gap: 2px;
+		row-gap: 2px;
 	}
 	div div div {
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		border-radius: 0.4em;
+		border-radius: 5px;
 		color: white;
-		font-size: 2em;
+		font-size: clamp(2rem, 5vw, 4rem);
 		font-weight: bold;
 		display: flex;
 		justify-content: center;
