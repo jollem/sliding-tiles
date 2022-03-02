@@ -2,7 +2,7 @@
 	import { seq } from '../lib';
 	import { size, init } from '../stores';
 
-	const options = [...seq(1, 7)];
+	const options = [...seq(3, 10)];
 </script>
 
 <nav>
