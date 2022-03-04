@@ -7,7 +7,7 @@ export const size = writable(0);
 export const tiles = writable<number[]>([]);
 export const legal = writable<number[]>([]);
 
-export const init = () => tiles.set(shuffle(create(get(size))));
+export const init = () => tiles.set(shuffle(create(get(size)), get(size)));
 
 export const move = (tile: number) => tiles.set(swap(get(tiles), tile));
 

@@ -2,9 +2,17 @@ export function* seq(start: number, end: number) {
 	for (let i = start; i < end; i++) yield i;
 }
 
-export const create = (size: number) => [...seq(0, size * size)];
+export const create = (size: number) => [...seq(1, size * size), 0];
 
-export const shuffle = (arr: number[]): number[] => arr.sort(() => Math.random() - 0.5);
+export const shuffle = (
+	arr: number[],
+	size: number
+): number[] => //arr.sort(() => Math.random() - 0.5);
+	[...seq(0, size * 100)].reduce((acc) => {
+		const legal = movable(acc, size);
+		const random = Math.floor(Math.random() * legal.length);
+		return swap(acc, legal[random]);
+	}, arr);
 
 export const sorted = (arr: number[]): boolean =>
 	arr.slice(0, -1).reduce((prev, current, index) => prev && current - 1 === index, true);
