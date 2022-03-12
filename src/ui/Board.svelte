@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { size, tiles, legal, move } from '../store/game';
 	import { sorted } from '../lib';
+	import Tile from './Tile.svelte';
 
 	$: {
 		sorted($tiles) && alert('Yahoo!');
@@ -10,13 +11,11 @@
 <div>
 	<div style="--size: {$size}">
 		{#each $tiles as tile}
-			<div
-				class:hole={!tile}
-				class:pointer={$legal.includes(tile)}
-				on:click={$legal.includes(tile) ? () => move(tile) : undefined}
-			>
+			<Tile
 				{tile}
-			</div>
+				movable={$legal.includes(tile)}
+				on:click={$legal.includes(tile) ? () => move(tile) : undefined}
+			/>
 		{/each}
 	</div>
 </div>
@@ -35,26 +34,5 @@
 		grid-template-rows: repeat(var(--size), 1fr);
 		column-gap: 2px;
 		row-gap: 2px;
-	}
-	div div div {
-		width: 100%;
-		height: 100%;
-		background-color: black;
-		border-radius: 5px;
-		color: white;
-		font-size: clamp(2rem, 5vh, 4rem);
-		font-weight: bold;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		cursor: not-allowed;
-	}
-
-	.hole {
-		background-color: white;
-	}
-
-	.pointer {
-		cursor: pointer;
 	}
 </style>
