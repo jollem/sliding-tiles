@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { size, tiles, legal, move } from '../stores';
+	import { size, tiles, legal, move } from '../store/game';
 	import { sorted } from '../lib';
 
 	$: {

@@ -1,5 +1,5 @@
 import { get, writable } from 'svelte/store';
-import { create, shuffle, movable, swap } from './lib';
+import { create, shuffle, movable, swap } from '../lib';
 
 const INITIAL_SIZE = 4;
 

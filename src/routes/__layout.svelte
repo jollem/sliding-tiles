@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Header from './header.svelte';
-	import Board from './board.svelte';
+	import Header from '../ui/Header.svelte';
+	import Board from '../ui/Board.svelte';
 </script>
 
 <svelte:head>

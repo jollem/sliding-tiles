@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { seq } from '../lib';
-	import { size, init } from '../stores';
+	import { size, init } from '../store/game';
 
 	const options = [...seq(3, 9)];
 </script>
