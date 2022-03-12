@@ -4,10 +4,7 @@ export function* seq(start: number, end: number) {
 
 export const create = (size: number) => [...seq(1, size * size), 0];
 
-export const shuffle = (
-	arr: number[],
-	size: number
-): number[] => //arr.sort(() => Math.random() - 0.5);
+export const shuffle = (arr: number[], size: number): number[] =>
 	[...seq(0, size * 100)].reduce((acc) => {
 		const legal = movable(acc, size);
 		const random = Math.floor(Math.random() * legal.length);
@@ -36,9 +33,6 @@ export const movable = (arr: number[], size) => {
 export const swap = (arr: number[], tile: number): number[] => {
 	const hole = arr.indexOf(0);
 	const index = arr.indexOf(tile);
-	const copy = [...arr];
-	const tmp = copy[hole];
-	copy[hole] = copy[index];
-	copy[index] = tmp;
-	return copy;
+	[arr[hole], arr[index]] = [arr[index], arr[hole]];
+	return arr;
 };

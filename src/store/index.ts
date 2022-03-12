@@ -9,7 +9,7 @@ export const legal = derived(tiles, ($tiles) => movable($tiles, get(size)));
 
 export const init = () => tiles.set(shuffle(create(get(size)), get(size)));
 
-export const move = (tile: number) => tiles.update((tiles) => swap(tiles, tile));
+export const move = (tile: number) => tiles.update((tiles) => swap([...tiles], tile));
 
 size.subscribe(init);
 
