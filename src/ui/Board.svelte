@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { size, tiles, legal, move } from '../store/game';
+	import { size, tiles, legal, move } from '../store';
 	import { sorted } from '../lib';
 	import Tile from './Tile.svelte';
 
