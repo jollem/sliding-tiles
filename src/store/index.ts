@@ -1,18 +1,16 @@
-import { get, writable } from 'svelte/store';
+import { get, writable, derived } from 'svelte/store';
 import { create, shuffle, movable, swap } from '../lib';
 
 const INITIAL_SIZE = 4;
 
 export const size = writable(0);
 export const tiles = writable<number[]>([]);
-export const legal = writable<number[]>([]);
+export const legal = derived(tiles, ($tiles) => movable($tiles, get(size)));
 
 export const init = () => tiles.set(shuffle(create(get(size)), get(size)));
 
-export const move = (tile: number) => tiles.set(swap(get(tiles), tile));
+export const move = (tile: number) => tiles.update((tiles) => swap(tiles, tile));
 
 size.subscribe(init);
-
-tiles.subscribe(() => legal.set(movable(get(tiles), get(size))));
 
 size.set(INITIAL_SIZE);
