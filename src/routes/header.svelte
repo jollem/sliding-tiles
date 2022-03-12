@@ -7,8 +7,8 @@
 
 <nav>
 	<select bind:value={$size}>
-		{#each options as option}
-			<option selected={option === $size}>{option}</option>
+		{#each options as value}
+			<option {value}>{value}</option>
 		{/each}
 	</select>
 	<button on:click={init}>New game</button>
@@ -23,7 +23,7 @@
 	button {
 		background-color: black;
 		color: white;
-		font-size: 2em;
+		font-size: 2rem;
 		cursor: pointer;
 	}
 

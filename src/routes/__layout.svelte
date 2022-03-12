@@ -7,19 +7,15 @@
 	<title>Sliding tiles</title>
 </svelte:head>
 
-<div id="layout">
-	<div>
-		<Header />
-	</div>
-	<div>
-		<Board />
-	</div>
+<div>
+	<Header />
+	<Board />
 </div>
 
 <style>
-	#layout {
+	div {
 		height: 100vh;
 		display: grid;
-		grid-template-rows: 10vh 90vh;
+		grid-template-rows: 5vh 90vh;
 	}
 </style>
