@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { scale } from 'svelte/transition';
 	import { size, tiles, legal, move, solved } from '../store';
 	import Tile from './Tile.svelte';
 </script>
@@ -15,7 +16,7 @@
 			{/each}
 		</div>
 		{#if $solved}
-			<div class="trophy">
+			<div in:scale={{ duration: 600 }} class="trophy">
 				<img src="/trophy.svg" alt="Congratulations" />
 			</div>
 		{/if}
