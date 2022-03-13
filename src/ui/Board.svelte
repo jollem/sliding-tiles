@@ -1,22 +1,25 @@
 <script lang="ts">
 	import { scale } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 	import { size, tiles, legal, move, solved } from '../store';
 	import Tile from './Tile.svelte';
 </script>
 
 <section>
 	<div class="wrapper">
-		<div class="board" style="--size: {$size}">
-			{#each $tiles as tile}
-				<Tile
-					{tile}
-					movable={$legal.includes(tile)}
-					on:click={$legal.includes(tile) ? () => move(tile) : undefined}
-				/>
+		<div class="board tiles" style="--size: {$size}">
+			{#each $tiles as tile (tile)}
+				<div animate:flip={{ duration: 300 }}>
+					<Tile
+						{tile}
+						movable={$legal.includes(tile)}
+						on:click={$legal.includes(tile) ? () => move(tile) : undefined}
+					/>
+				</div>
 			{/each}
 		</div>
 		{#if $solved}
-			<div in:scale={{ duration: 600 }} class="trophy">
+			<div in:scale={{ delay: 250, duration: 750 }} class="board trophy">
 				<img src="/trophy.svg" alt="Congratulations" />
 			</div>
 		{/if}
@@ -29,7 +32,7 @@
 		justify-content: center;
 		align-content: center;
 	}
-	div div {
+	.board {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -42,7 +45,7 @@
 		height: 75vh;
 		position: relative;
 	}
-	.board {
+	.tiles {
 		grid-template-columns: repeat(var(--size), 1fr);
 		grid-template-rows: repeat(var(--size), 1fr);
 		column-gap: 2px;

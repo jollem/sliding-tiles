@@ -21,7 +21,7 @@
 	}
 
 	.hole {
-		background-color: white;
+		display: none;
 	}
 
 	.pointer {
