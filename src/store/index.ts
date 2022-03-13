@@ -1,14 +1,15 @@
 import { writable, derived } from 'svelte/store';
-import { create, shuffle, movable, swap } from '../lib';
+import { init, movable, swap, sorted } from '../lib';
 
 const INITIAL_SIZE = 4;
 
 export const size = writable(INITIAL_SIZE);
 export const tiles = writable<number[]>([]);
-export const legal = derived([tiles, size], ([$tiles, $size]) => movable($tiles, $size));
+export const legal = derived(tiles, ($tiles) => movable($tiles));
+export const solved = derived(tiles, ($tiles) => sorted($tiles));
 
-export const init = (size: number) => tiles.set(shuffle(create(size), size));
+export const reset = (size: number) => tiles.set(init(size));
 
 export const move = (tile: number) => tiles.update((tiles) => swap([...tiles], tile));
 
-size.subscribe(init);
+size.subscribe(reset);

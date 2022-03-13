@@ -1,38 +1,60 @@
 <script lang="ts">
-	import { size, tiles, legal, move } from '../store';
-	import { sorted } from '../lib';
+	import { size, tiles, legal, move, solved } from '../store';
 	import Tile from './Tile.svelte';
-
-	$: {
-		sorted($tiles) && alert('Yahoo!');
-	}
 </script>
 
-<div>
-	<div style="--size: {$size}">
-		{#each $tiles as tile}
-			<Tile
-				{tile}
-				movable={$legal.includes(tile)}
-				on:click={$legal.includes(tile) ? () => move(tile) : undefined}
-			/>
-		{/each}
+<section>
+	<div class="wrapper">
+		<div class="board" style="--size: {$size}">
+			{#each $tiles as tile}
+				<Tile
+					{tile}
+					movable={$legal.includes(tile)}
+					on:click={$legal.includes(tile) ? () => move(tile) : undefined}
+				/>
+			{/each}
+		</div>
+		{#if $solved}
+			<div class="trophy">
+				<img src="/trophy.svg" alt="Congratulations" />
+			</div>
+		{/if}
 	</div>
-</div>
+</section>
 
 <style>
-	div {
+	section {
 		display: grid;
 		justify-content: center;
 		align-content: center;
 	}
 	div div {
-		height: 75vh;
-		width: 75vh;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 		display: grid;
+	}
+	.wrapper {
+		width: 75vh;
+		height: 75vh;
+		position: relative;
+	}
+	.board {
 		grid-template-columns: repeat(var(--size), 1fr);
 		grid-template-rows: repeat(var(--size), 1fr);
 		column-gap: 2px;
 		row-gap: 2px;
+	}
+	.trophy {
+		z-index: 100;
+		background-color: rgba(255, 255, 255, 0);
+		display: grid;
+		justify-content: center;
+		align-content: center;
+	}
+	img {
+		height: 50vh;
 	}
 </style>

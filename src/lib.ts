@@ -2,14 +2,16 @@ export function* seq(start: number, end: number) {
 	for (let i = start; i < end; i++) yield i;
 }
 
-export const create = (size: number) => [...seq(1, size * size), 0];
+const create = (size: number) => [...seq(1, size * size), 0];
 
-export const shuffle = (arr: number[], size: number): number[] =>
-	[...seq(0, size * 100)].reduce((acc) => {
-		const legal = movable(acc, size);
+const shuffle = (arr: number[]): number[] =>
+	[...seq(0, arr.length * 50)].reduce((acc) => {
+		const legal = movable(acc);
 		const random = Math.floor(Math.random() * legal.length);
 		return swap(acc, legal[random]);
 	}, arr);
+
+export const init = (size: number) => shuffle(create(size));
 
 export const sorted = (arr: number[]): boolean =>
 	arr.slice(0, -1).reduce((prev, current, index) => prev && current - 1 === index, true);
@@ -18,7 +20,8 @@ const row = (index: number, size: number): number => Math.floor(index / size);
 
 const column = (index: number, size: number): number => index % size;
 
-export const movable = (arr: number[], size) => {
+export const movable = (arr: number[]) => {
+	const size = Math.sqrt(arr.length);
 	const hole = arr.indexOf(0);
 	return arr.reduce(
 		(acc, curr, index) =>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { seq } from '../lib';
-	import { size, init } from '../store';
+	import { size, reset } from '../store';
 
-	const options = [...seq(3, 9)];
+	const options = [...seq(2, 9)];
 </script>
 
 <nav>
@@ -11,7 +11,7 @@
 			<option {value}>{value}</option>
 		{/each}
 	</select>
-	<button on:click={() => init($size)}>New game</button>
+	<button on:click={() => reset($size)}>New game</button>
 </nav>
 
 <style>
