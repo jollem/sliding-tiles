@@ -11,25 +11,31 @@
 			<option {value}>{value}</option>
 		{/each}
 	</select>
-	<button on:click={init}>New game</button>
+	<button on:click={() => init($size)}>New game</button>
 </nav>
 
 <style>
 	nav {
 		display: flex;
 		justify-content: center;
+		gap: 0.5rem;
 	}
 
 	button {
 		background-color: black;
 		color: white;
 		font-size: 2rem;
+		font-weight: bold;
+		padding: 0.25rem 1rem;
 		cursor: pointer;
+		border-radius: 0.25rem;
 	}
 
 	select {
-		font-size: 2em;
+		font-size: 2rem;
 		font-weight: bold;
-		width: 3em;
+		width: 4rem;
+		text-align: right;
+		border-radius: 0.25rem;
 	}
 </style>

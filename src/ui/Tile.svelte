@@ -10,7 +10,7 @@
 		width: 100%;
 		height: 100%;
 		background-color: black;
-		border-radius: 5px;
+		border-radius: 0.25rem;
 		color: white;
 		font-size: clamp(2rem, 5vh, 4rem);
 		font-weight: bold;
